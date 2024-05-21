@@ -1,0 +1,107 @@
+/* Importación de Tailwind CSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Fuentes personalizadas */
+@font-face {
+  font-family: 'Linotype';
+  src: local('Linotype Didot Std Bold Italic'), local('Linotype-Didot-Std-Bold-Italic'),
+      url('./fonts/DidotLTStd-BoldItalic.ttf') format('truetype'),
+      url('./fonts/DidotLTStd-BoldItalic.woff') format('woff'),
+      url('./fonts/DidotLTStd-BoldItalic.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Linotype Didot';
+  src: local('Linotype Didot Pro Roman'), local('Linotype-Didot-Pro-Roman'),
+      url('./fonts/DidotLTPro-Roman.woff') format('woff'),
+      url('./fonts/DidotLTPro-Roman.woff2') format('woff2'),
+      url('./fonts/DidotLTPro-Roman.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Estilos generales */
+* {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  box-sizing: border-box;
+}
+
+/* Estilos específicos */
+.logo-first {
+  font-family: 'Linotype Didot';
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 2px solid black;
+  padding-bottom: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding: 4rem;
+}
+
+
+
+.banner {
+  margin-top: 24px;
+  position: relative;
+  width: 100%;
+  height: 64px;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.75;
+}
+
+.banner .content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+}
+
+.banner .title {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.banner .subtitle {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+}
+
+
+.bg-light-brown {
+  background-color: #d2b48c77; /* This is a light brown color */
+}
+
+.cards-parfum {
+  font-family: 'Linotype Didot';
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 2px solid black;
+  padding-bottom: 0.5rem;
+  margin-bottom: 2rem;
+}
