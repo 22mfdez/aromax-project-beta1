@@ -41,7 +41,13 @@ export const Icon = (className, ...rest) => {
 };
 
 export const Image = ({ alt, source }) => {
-  return <img src={source} alt={alt} className="object-cover w-full h-full" />;
+  return (
+    <img
+      src={source}
+      alt={alt}
+      className="object-cover w-full h-full rounded-xl"
+    />
+  );
 };
 
 const Card = ({ title, children }) => {
@@ -50,7 +56,7 @@ const Card = ({ title, children }) => {
     <div
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="border border-black/[0.2] group/canvas-card flex items-center justify-center dark:border-white/[0.2]  max-w-sm w-full mx-auto p-4 h-[30rem] relative"
+      className="border rounded-xl border-black/[0.2] group/canvas-card flex items-center justify-center dark:border-white/[0.2]  max-w-sm w-full mx-auto p-4 h-[30rem] relative"
     >
       <motion.div
         initial={{ opacity: 0.5 }}
