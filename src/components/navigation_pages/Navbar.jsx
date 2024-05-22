@@ -1,59 +1,96 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { SiCoffeescript } from "react-icons/si";
-import Button from "../small_components/Button";
-import { AiOutlineMenuUnfold, AiOutlineClose } from "react-icons/ai";
+import React from "react";
+import {
+  Navbar,
+  NavbarBrand,
+  NavbarContent,
+  NavbarItem,
+  NavbarMenuToggle,
+  NavbarMenu,
+  NavbarMenuItem,
+  Link,
+} from "@nextui-org/react";
+import { FaUser, FaShoppingCart } from "react-icons/fa"; // Importamos los iconos
 
-const Navbar = () => {
-  const [menu, setMenu] = useState(false);
+export default function App() {
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
-  const handleChange = () => {
-    setMenu(!menu);
-  };
-
-  const closeMenu = () => {
-    setMenu(false);
-  };
+  const menuItems = [
+    "Profile",
+    "Dashboard",
+    "Activity",
+    "Analytics",
+    "System",
+    "Deployments",
+    "My Settings",
+    "Team Settings",
+    "Help & Feedback",
+    "Log Out",
+  ];
 
   return (
-    <div className="fixed w-full z-10">
-      <div className="flex flex-row justify-between p-5 lg:px-32 px-5 bg-white bg-opacity-75 shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
-        <div className="flex flex-row items-center cursor-pointer gap-2">
-          <span>
-            <SiCoffeescript size={25} />
-          </span>
-          <h1 className="text-xl font-semibold">CafePulse</h1>
-        </div>
+    <Navbar onMenuOpenChange={setIsMenuOpen} className="bg-white shadow-md">
+      <NavbarContent>
+        <NavbarMenuToggle
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          className="sm:hidden"
+        />
+        <NavbarBrand>
+          <p className="font-bold text-inherit">AROMAX</p>
+        </NavbarBrand>
+      </NavbarContent>
 
-        <nav className="hidden md:flex flex-row items-center text-lg font-medium gap-8">
-          <Link
-            to="/"
-            className="group relative inline-block cursor-pointer hover:text-brightColor"
-          >
+      <NavbarContent className="hidden sm:flex gap-6" justify="center">
+        <NavbarItem>
+          <Link color="foreground" href="/">
             Home
-            <span className="absolute inset-x-0 bottom-0 h-0.5 bg-black transform scale-x-0 origin-left transition-transform group-hover:scale-x-100"></span>
           </Link>
-          <Link
-            to="/about"
-            className="group relative inline-block cursor-pointer hover:text-brightColor"
-          >
-            About Us
-            <span className="absolute inset-x-0 bottom-0 h-0.5 bg-black transform scale-x-0 origin-left transition-transform group-hover:scale-x-100"></span>
+        </NavbarItem>
+        <NavbarItem>
+          <Link color="foreground" href="/productos">
+            Productos
           </Link>
-          <Link
-            to="/products"
-            className="group relative inline-block cursor-pointer hover:text-brightColor"
-          >
-            Products
-            <span className="absolute inset-x-0 bottom-0 h-0.5 bg-black transform scale-x-0 origin-left transition-transform group-hover:scale-x-100"></span>
+        </NavbarItem>
+        <NavbarItem isActive>
+          <Link href="#" aria-current="/personalizar">
+            Personaliza el tuyo
           </Link>
-        </nav>
-
-        <div className="hidden lg:flex">
-          <Button title="Login" />
-        </div>
-      </div>
-    </div>
+        </NavbarItem>
+        <NavbarItem>
+          <Link color="foreground" href="#">
+            Aromax Club
+          </Link>
+        </NavbarItem>
+      </NavbarContent>
+      <NavbarContent justify="end" className="gap-4">
+        <NavbarItem className="hidden lg:flex">
+          <Link href="#" className="text-black flex items-center">
+            <FaUser size={20} className="mr-2 icon" />
+          </Link>
+          <Link href="#" className="text-black flex items-center">
+            <FaShoppingCart size={20} className="mr-2 icon" />
+          </Link>
+        </NavbarItem>
+      </NavbarContent>
+      <NavbarMenu>
+        {menuItems.map((item, index) => (
+          <NavbarMenuItem key={`${item}-${index}`}>
+            <Link
+              color={
+                index === 2
+                  ? "primary"
+                  : index === menuItems.length - 1
+                  ? "danger"
+                  : "foreground"
+              }
+              className="w-full"
+              href="#"
+              size="lg"
+            >
+              {item}
+            </Link>
+          </NavbarMenuItem>
+        ))}
+      </NavbarMenu>
+    </Navbar>
   );
-};
-export default Navbar;
+}

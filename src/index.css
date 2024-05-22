@@ -3,6 +3,9 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
+
 /* Fuentes personalizadas */
 @font-face {
   font-family: 'Linotype';
@@ -104,4 +107,30 @@
   border-bottom: 2px solid black;
   padding-bottom: 0.5rem;
   margin-bottom: 2rem;
+}
+
+/* Tailwind CSS styles */
+.navbar {
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar a {
+  color: #000000; /* Negro */
+  transition: color 0.3s;
+}
+
+.navbar a:hover {
+  color: #ff7f50;
+}
+
+.navbar-icons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
 }
