@@ -6,6 +6,7 @@ import "./index.css";
 import { NextUIProvider } from "@nextui-org/react";
 import Root from "./routes/Root.jsx";
 import ProductsPage from "./routes/ProductsPage.jsx";
+import 'rsuite/dist/rsuite.min.css';
 
 const router = createBrowserRouter([
   {
