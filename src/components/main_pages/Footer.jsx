@@ -2,21 +2,24 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer class="bg-white dark:bg-gray-900">
-      <div class="container px-6 py-8 mx-auto my-8">
+    <footer class="bg-white relative">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1440 320"
+        style={{ marginBottom: "-10px" }}
+      >
+        <path
+          fill="#273036"
+          fillOpacity="1"
+          d="M0,160L26.7,149.3C53.3,139,107,117,160,133.3C213.3,149,267,203,320,202.7C373.3,203,427,149,480,133.3C533.3,117,587,139,640,138.7C693.3,139,747,117,800,106.7C853.3,96,907,96,960,101.3C1013.3,107,1067,117,1120,149.3C1173.3,181,1227,235,1280,224C1333.3,213,1387,139,1413,101.3L1440,64L1440,320L1413.3,320C1386.7,320,1333,320,1280,320C1226.7,320,1173,320,1120,320C1066.7,320,1013,320,960,320C906.7,320,853,320,800,320C746.7,320,693,320,640,320C586.7,320,533,320,480,320C426.7,320,373,320,320,320C266.7,320,213,320,160,320C106.7,320,53,320,27,320L0,320Z"
+        ></path>
+      </svg>
+      <div class="container px-6 py-8 mx-auto my-8 absolute bottom-0 left-0 right-0">
         <div class="flex flex-col items-center text-center">
-          <a href="#">
-            <img
-              class="w-auto h-7"
-              src="https://merakiui.com/images/full-logo.svg"
-              alt=""
-            />
-          </a>
-
           <div class="flex flex-wrap justify-center mt-6 -mx-4">
             <a
               href="#"
-              class="mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400"
+              class="mx-4 text-sm text-white transition-colors duration-300"
               aria-label="Reddit"
             >
               {" "}
@@ -25,7 +28,7 @@ const Footer = () => {
 
             <a
               href="#"
-              class="mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400"
+              class="mx-4 text-sm text-white transition-colors duration-300"
               aria-label="Reddit"
             >
               {" "}
@@ -34,7 +37,7 @@ const Footer = () => {
 
             <a
               href="#"
-              class="mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400"
+              class="mx-4 text-sm text-white transition-colors duration-300"
               aria-label="Reddit"
             >
               {" "}
@@ -43,7 +46,7 @@ const Footer = () => {
 
             <a
               href="#"
-              class="mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400"
+              class="mx-4 text-sm text-white transition-colors duration-300"
               aria-label="Reddit"
             >
               {" "}
@@ -52,7 +55,7 @@ const Footer = () => {
 
             <a
               href="#"
-              class="mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400"
+              class="mx-4 text-sm text-white transition-colors duration-300"
               aria-label="Reddit"
             >
               {" "}
@@ -71,7 +74,7 @@ const Footer = () => {
           <div class="flex -mx-2">
             <a
               href="#"
-              class="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
+              class="mx-4 text-sm text-white transition-colors duration-300"
               aria-label="Reddit"
             >
               <svg
@@ -86,7 +89,7 @@ const Footer = () => {
 
             <a
               href="#"
-              class="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
+              class="mx-2 text-gray-600 transition-colors duration-300"
               aria-label="Facebook"
             >
               <svg
@@ -99,11 +102,7 @@ const Footer = () => {
               </svg>
             </a>
 
-            <a
-              href="#"
-              class="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
-              aria-label="Github"
-            >
+            <a href="#" class="mx-2 text-gray-600" aria-label="Github">
               <svg
                 class="w-5 h-5 fill-current"
                 viewBox="0 0 24 24"

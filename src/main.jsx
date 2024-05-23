@@ -1,12 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import App from "./App.jsx";
-import "./index.css";
 import { NextUIProvider } from "@nextui-org/react";
 import Root from "./routes/Root.jsx";
 import ProductsPage from "./routes/ProductsPage.jsx";
-import 'rsuite/dist/rsuite.min.css';
+import Personalize from "./routes/Personalize.jsx";
+import App from "./App.jsx";
+import "rsuite/dist/rsuite.min.css";
+import "./index.css";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: "/productos",
         element: <ProductsPage />,
+      },
+      {
+        path: "/personalizar",
+        element: <Personalize />,
       },
     ],
   },

@@ -56,9 +56,7 @@ export default function App() {
             </Link>
           </NavbarItem>
           <NavbarItem isActive>
-            <Link href="#" aria-current="/personalizar">
-              Personaliza el tuyo
-            </Link>
+            <Link href="/personalizar">Personaliza el tuyo</Link>
           </NavbarItem>
           <NavbarItem>
             <Link color="foreground" href="#">

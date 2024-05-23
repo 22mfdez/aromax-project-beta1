@@ -1,84 +1,120 @@
 import Products from "../components/main_pages/Products";
 import perfumes from "../assets/final.json";
-import Banner from "../components/small_components/Banner";
 import { Card, CardBody, CardFooter, Image } from "@nextui-org/react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { CheckTree } from "rsuite";
 
 export default function ProductsPage() {
-  const alreadyMarks = [];
   const fragances = [];
   const headNotes = [];
+  const alreadyMarks = [];
   const alreadyFragances = [];
   const alreadyHeadNotes = [];
 
-  perfumes.map((item) => {
-    item.fraganceType.map((fragance) => {
-      fragances.push(fragance.trim());
+  const [finalHeadNotes, setFinalHeadNotes] = useState();
+  const [finalFragances, setFinalFragances] = useState();
+  const [marcas, setMarcas] = useState();
+
+  const [selectedValue, setSelectedValue] = useState([]);
+  const [filteredValues, setFilteredValues] = useState(perfumes);
+
+  useEffect(() => {
+    perfumes.map((item) => {
+      item.fraganceType.map((fragance) => {
+        fragances.push(fragance.trim());
+      });
     });
-  });
 
-  perfumes.map((item) => {
-    item.headNotes.map((headNote) => {
-      headNotes.push(headNote.trim());
+    perfumes.map((item) => {
+      item.headNotes.map((headNote) => {
+        headNotes.push(headNote.trim());
+      });
     });
-  });
 
-  let finalHeadNotes = headNotes
-    .map((item) => {
-      if (alreadyHeadNotes.includes(item)) {
-        return null;
-      } else {
-        if (item === "") return null;
-        alreadyHeadNotes.push(item);
+    const x = headNotes
+      .map((item) => {
+        if (alreadyHeadNotes.includes(item)) {
+          return null;
+        } else {
+          if (item === "") return null;
+          alreadyHeadNotes.push(item);
+          return {
+            label: item,
+            value: item,
+          };
+        }
+      })
+      .filter((item) => item !== null)
+      .sort((a, b) => a.label.localeCompare(b.label));
+
+    setFinalHeadNotes(x);
+
+    const y = fragances
+      .map((item) => {
+        if (alreadyFragances.includes(item)) {
+          return null;
+        } else {
+          if (item === "") return null;
+          alreadyFragances.push(item);
+          return {
+            label: item,
+            value: item,
+          };
+        }
+      })
+      .filter((item) => item !== null)
+      .sort((a, b) => a.label.localeCompare(b.label));
+
+    setFinalFragances(y);
+
+    const z = perfumes
+      .map((item) => {
+        const brand = item.brand;
+        if (alreadyMarks.includes(brand)) {
+          return null;
+        }
+        alreadyMarks.push(brand);
         return {
-          label: item,
-          value: item,
+          label: brand,
+          value: brand,
         };
-      }
-    })
-    .filter((item) => item !== null)
-    .sort((a, b) => a.label.localeCompare(b.label));
+      })
+      .filter((item) => item !== null)
+      .sort((a, b) => a.label.localeCompare(b.label));
 
-  let finalFragances = fragances
-    .map((item) => {
-      if (alreadyFragances.includes(item)) {
-        return null;
-      } else {
-        if (item === "") return null;
-        alreadyFragances.push(item);
-        return {
-          label: item,
-          value: item,
-        };
-      }
-    })
-    .filter((item) => item !== null)
-    .sort((a, b) => a.label.localeCompare(b.label));
+    setMarcas(z);
+  }, []);
 
-  let marcas = perfumes
-    .map((item) => {
-      const brand = item.brand;
-      if (alreadyMarks.includes(brand)) {
-        return null;
-      }
-      alreadyMarks.push(brand);
-      return {
-        label: brand,
-        value: brand,
-      };
-    })
-    .filter((item) => item !== null)
-    .sort((a, b) => a.label.localeCompare(b.label));
+  function handleOnSelect(activeNode, value) {
+    if (value.length === 0) {
+      return;
+    } else {
+      const filter = perfumes.filter((item) => {
+        const fragancesType = item.fraganceType;
+        const headNotes = item.headNotes;
+        const brand = item.brand;
+        const fraganceMatch = fragancesType.some((fragance) =>
+          value.includes(fragance.trim())
+        );
+        const headNotesMatch = headNotes.some((headNote) =>
+          value.includes(headNote.trim())
+        );
+        const brandMatch = value.includes(brand);
+        return fraganceMatch || headNotesMatch || brandMatch;
+      });
+      setFilteredValues(filter);
+    }
+  }
 
   return (
     <div>
-      <Banner />
       <div id="producto">
         <Products />
       </div>
       <div className="grid grid-cols-2">
         <div>
           <CheckTree
+            onSelect={handleOnSelect}
             data={[
               {
                 label: "Género",
@@ -124,7 +160,7 @@ export default function ProductsPage() {
           </div>
           <div className="flex items-center justify-center">
             <div className="flex flex-col catalog-grid">
-              {perfumes.map((item, index) => (
+              {filteredValues.map((item, index) => (
                 <Card
                   key={index}
                   shadow="sm"
