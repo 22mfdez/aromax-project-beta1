@@ -183,15 +183,9 @@ export default function ProductsPage() {
                                 </Card>
                             ))}
                         </div>
-                      </div>
                     </div>
-                  </CardFooter>
-                </Card>
-              ))}
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 }
