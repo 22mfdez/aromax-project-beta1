@@ -22,11 +22,11 @@ const Info = () => {
             </svg>
             <div className="space-y-2">
               <p className="text-lg font-medium leading-snug">
-                Lorem ipsum dolor sit amet
+                Descubre tu fragancia perfecta
               </p>
               <p className="leading-snug">
-                Praesentium ea et neque distinctio quas eius repudiandae quaerat
-                obcaecati voluptatem similique!
+                Explora nuestra amplia selección de perfumes exclusivos, desde
+                clásicos atemporales hasta las últimas tendencias en aromas.
               </p>
             </div>
           </div>
@@ -47,11 +47,11 @@ const Info = () => {
             </svg>
             <div className="space-y-2">
               <p className="text-lg font-medium leading-snug">
-                Lorem ipsum dolor sit amet
+                Calidad y Exclusividad
               </p>
               <p className="leading-snug">
-                Praesentium ea et neque distinctio quas eius repudiandae quaerat
-                obcaecati voluptatem similique!
+                Nuestros perfumes son cuidadosamente seleccionados para
+                ofrecerte la más alta calidad y exclusividad en cada fragancia.
               </p>
             </div>
           </div>
@@ -72,11 +72,13 @@ const Info = () => {
             </svg>
             <div className="space-y-2">
               <p className="text-lg font-medium leading-snug">
-                Lorem ipsum dolor sit amet
+                AromaX Recommender
               </p>
               <p className="leading-snug">
-                Praesentium ea et neque distinctio quas eius repudiandae quaerat
-                obcaecati voluptatem similique!
+                Utilizando un algoritmo de aprendizaje automático, AromaX
+                Recommender sugiere perfumes existentes que podrían interesarte
+                con base en las notas que has seleccionado previamente.
+                ¡Descubre nuevas fragancias que se ajusten a tus preferencias!
               </p>
             </div>
           </div>

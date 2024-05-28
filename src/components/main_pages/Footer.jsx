@@ -32,7 +32,7 @@ const Footer = () => {
               aria-label="Reddit"
             >
               {" "}
-              About{" "}
+              Productos{" "}
             </a>
 
             <a
@@ -41,7 +41,16 @@ const Footer = () => {
               aria-label="Reddit"
             >
               {" "}
-              Teams{" "}
+              Personaliza el tuyo{" "}
+            </a>
+
+            <a
+              href="#"
+              class="mx-4 text-sm text-white transition-colors duration-300"
+              aria-label="Reddit"
+            >
+              {" "}
+              Aromax Club{" "}
             </a>
 
             <a
@@ -52,15 +61,6 @@ const Footer = () => {
               {" "}
               Privacy{" "}
             </a>
-
-            <a
-              href="#"
-              class="mx-4 text-sm text-white transition-colors duration-300"
-              aria-label="Reddit"
-            >
-              {" "}
-              Cookies{" "}
-            </a>
           </div>
         </div>
 
@@ -68,7 +68,7 @@ const Footer = () => {
 
         <div class="flex flex-col items-center sm:flex-row sm:justify-between">
           <p class="text-sm text-gray-500 dark:text-gray-300">
-            © Copyright 2021. All Rights Reserved.
+            © Maria Fernández Cascos 2024. All Rights Reserved.
           </p>
 
           <div class="flex -mx-2">
