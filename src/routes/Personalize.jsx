@@ -1,10 +1,16 @@
-import { Button, Tooltip } from "@nextui-org/react";
-import { Select } from "@nextui-org/react";
+import {
+  Button,
+  Tooltip,
+  Select,
+  Input,
+  Switch,
+  Progress,
+} from "@nextui-org/react";
 import { useState } from "react";
-import { Input } from "@nextui-org/react";
-import { Checkbox } from "@nextui-org/react";
-import { Spotlight } from "../components/ui/Spotlight";
-import { Progress } from "@nextui-org/react";
+import Confetti from "react-confetti";
+import Spotlight from "../components/ui/Spotlight";
+import LetterPullup from "../components/ui/Letter-pullup";
+import Footer from "../components/main_pages/Footer";
 
 // Componente de selección de notas
 function Step1({ onNext }) {
@@ -14,56 +20,35 @@ function Step1({ onNext }) {
 
   return (
     <>
-      <div className="h-[20rem] w-full rounded-md flex md:items-center md:justify-center bg-black/[0.96] antialiased bg-grid-white/[0.02] relative overflow-hidden">
-        <Spotlight
-          className="-top-40 left-0 md:left-60 md:-top-20"
-          fill="white"
+      <h2 className="text-xl font-semibold mb-4">Paso 1: Selección de Notas</h2>
+      <div className="w-full max-w-md">
+        <Select
+          placeholder="Selecciona una nota de cabeza"
+          selectionMode="multiple"
+          className="mt-4"
+          onChange={(value) => setHeadNote(value)}
         />
-        <div className=" p-4 max-w-7xl  mx-auto relative z-10  w-full pt-20 md:pt-0">
-          <h1 className="text-4xl md:text-7xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50">
-            Crea <br /> tu propio perfume
-          </h1>
-          <p className="mt-4 font-normal text-base text-neutral-300 max-w-lg text-center mx-auto">
-            Crea en tan solo unos pasos un perfume a tu medida, con tus acordes
-            favoritos.
-          </p>
-        </div>
-      </div>
-      <div className="flex flex-col items-center justify-center h-screen">
-        <Progress
-          aria-label="Loading..."
-          value={60}
-          className="max-w-md my-6"
+        <Select
+          placeholder="Selecciona una nota de corazón"
+          selectionMode="multiple"
+          className="mt-4"
+          onChange={(value) => setHeartNote(value)}
         />
-        <h2 className="text-xl font-semibold mb-4">
-          Paso 1: Selección de Notas
-        </h2>
-        <div className="w-full max-w-md">
-          <Select
-            placeholder="Selecciona una nota de cabeza"
-            selectionMode="multiple"
-            className="mt-4"
-          />
-          <Select
-            placeholder="Selecciona una nota de corazón"
-            selectionMode="multiple"
-            className="mt-4"
-          />
-          <Select
-            placeholder="Selecciona una nota de base"
-            selectionMode="multiple"
-            className="mt-4"
-          />
-        </div>
-        <Tooltip content="Recuerda haber elegido bien!">
-          <Button
-            onClick={() => onNext({ headNote, heartNote, baseNote })}
-            className="mt-4"
-          >
-            Siguiente
-          </Button>
-        </Tooltip>
+        <Select
+          placeholder="Selecciona una nota de base"
+          selectionMode="multiple"
+          className="mt-4"
+          onChange={(value) => setBaseNote(value)}
+        />
       </div>
+      <Tooltip content="Recuerda haber elegido bien!">
+        <Button
+          onClick={() => onNext({ headNote, heartNote, baseNote })}
+          className="mt-4"
+        >
+          Siguiente
+        </Button>
+      </Tooltip>
     </>
   );
 }
@@ -76,54 +61,74 @@ function Step2({ onCustomize }) {
   const [bottleShape, setBottleShape] = useState("");
   const [refillable, setRefillable] = useState(false);
 
+  const handleBottleSelection = (bottle) => {
+    setSelectedBottle(bottle);
+  };
+
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
+    <>
       <h2 className="text-xl font-semibold mb-4">
         Paso 2: Personalización del Perfume
       </h2>
       <div className="w-full max-w-md">
+        <div className="flex justify-between mt-4">
+          <div
+            className={`p-4 cursor-pointer border-2 ${
+              selectedBottle === "frasco1"
+                ? "border-blue-500"
+                : "border-gray-300"
+            }`}
+            onClick={() => handleBottleSelection("frasco1")}
+          >
+            <img src="/assets/frascos/frasco1.jpg" alt="Frasco 1" />
+          </div>
+          <div
+            className={`p-4 cursor-pointer border-2 ${
+              selectedBottle === "frasco2"
+                ? "border-blue-500"
+                : "border-gray-300"
+            }`}
+            onClick={() => handleBottleSelection("frasco2")}
+          >
+            <img src="/assets/frascos/frasco2.jpg" alt="Frasco 2" />
+          </div>
+        </div>
         <Select
-          value={selectedBottle}
-          selectionMode="multiple"
-          className=" mt-4"
-          onChange={(value) => setSelectedBottle(value)}
-          placeholder="Selecciona un frasco"
+          value={size}
+          className="mt-4"
+          onChange={(value) => setSize(value)}
+          placeholder="Seleccione el tamaño"
           options={[
-            { label: "Frasco 1", value: "frasco1" },
-            { label: "Frasco 2", value: "frasco2" },
-            { label: "Frasco 3", value: "frasco3" },
+            { label: "30ml", value: "30ml" },
+            { label: "50ml", value: "50ml" },
+            { label: "100ml", value: "100ml" },
           ]}
         />
         <Input
-          value={size}
-          className=" mt-4"
-          onChange={(e) => setSize(e.target.value)}
-          placeholder="Ingrese el tamaño en ml"
-          type="number"
-        />
-        <Input
           value={name}
-          className=" mt-4"
+          className="mt-4"
           onChange={(e) => setName(e.target.value)}
-          placeholder="Ingrese el nombre"
+          placeholder="Ingrese el nombre para grabar"
         />
         <Select
           value={bottleShape}
-          className=" mt-4"
+          className="mt-4"
           onChange={(value) => setBottleShape(value)}
-          label="Forma del Frasco"
-          placeholder="Seleccionar"
+          placeholder="Forma del Frasco"
           options={[
             { label: "Spray", value: "spray" },
             { label: "Gotero", value: "gotero" },
             { label: "Otro", value: "otro" },
           ]}
         />
-        <Checkbox
-          checked={refillable}
-          onChange={() => setRefillable(!refillable)}
-          label="Opción a Recargable"
-        />
+        <div className="mt-4 flex items-center">
+          <Switch
+            checked={refillable}
+            onChange={() => setRefillable(!refillable)}
+            label="Opción a Recargable"
+          />
+          <label className="ml-2">Recargable</label>
+        </div>
       </div>
       <Button
         onClick={() =>
@@ -133,7 +138,7 @@ function Step2({ onCustomize }) {
       >
         Siguiente
       </Button>
-    </div>
+    </>
   );
 }
 
@@ -154,14 +159,67 @@ function Personalize() {
   };
 
   return (
-    <div>
-      {step === 1 && <Step1 onNext={handleNextStep} />}
-      {step === 2 && <Step2 onCustomize={handleCustomize} />}
-      {/* Agregar más pasos según sea necesario */}
-      {/* Componente de recomendación de perfumes */}
-      {/* Componente de confirmación y finalización */}
-    </div>
+    <>
+      <div className="h-[20rem] w-full rounded-md flex md:items-center md:justify-center bg-black/[0.96] antialiased bg-grid-white/[0.02] relative overflow-hidden">
+        <Spotlight
+          className="-top-40 left-0 md:left-60 md:-top-20"
+          fill="white"
+        />
+        <div className="p-4 max-w-7xl mx-auto relative z-10 w-full pt-20 md:pt-0">
+          <LetterPullup
+            className="text-4xl md:text-7xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50"
+            words="Crea tu propio perfume"
+            delay={0.05}
+          />
+          <p className="mt-4 font-normal text-base text-neutral-300 max-w-lg text-center mx-auto">
+            Crea en tan solo unos pasos un perfume a tu medida, con tus acordes
+            favoritos.
+          </p>
+        </div>
+      </div>
+      <div className="flex flex-col items-center justify-center mt-4">
+        <Progress
+          aria-label="Loading..."
+          value={step === 1 ? 33 : step === 2 ? 66 : 100}
+          className="max-w-md my-4"
+        />
+        <div>
+          {step === 1 && <Step1 onNext={handleNextStep} />}
+          {step === 2 && <Step2 onCustomize={handleCustomize} />}
+          {step === 3 && (
+            <div>
+              <Confetti width={window.innerWidth} height={window.innerHeight} />
+              <h2 className="text-xl font-semibold mb-4">¡Perfume Creado!</h2>
+              <Button
+                className="mt-4"
+                onClick={() => {
+                  // Lógica para añadir al carrito
+                  console.log(
+                    "Añadido al carrito:",
+                    selectedNotes,
+                    customizationData
+                  );
+                  alert("Perfume añadido al carrito");
+                }}
+              >
+                Añadir al Carrito
+              </Button>
+              <Button
+                className="mt-4"
+                onClick={() => {
+                  setStep(1);
+                  setSelectedNotes({});
+                  setCustomizationData({});
+                }}
+              >
+                Crear Otro Perfume
+              </Button>
+            </div>
+          )}
+        </div>
+      </div>
+      <Footer />
+    </>
   );
 }
-
 export default Personalize;
